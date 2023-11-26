@@ -1,0 +1,29 @@
+{
+  "name": "accessibilitymap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@turf/bbox": "^6.5.0",
+    "@turf/bezier-spline": "^6.5.0",
+    "@turf/explode": "^6.5.0",
+    "@turf/nearest-point": "^6.5.0",
+    "@turf/nearest-point-on-line": "^6.5.0",
+    "@turf/turf": "^6.5.0",
+    "d3": "^7.8.5",
+    "geojson-path-finder": "^2.0.2",
+    "heap-js": "^2.3.0",
+    "line-interpolate-points": "^1.0.5",
+    "turf-featurecollection": "^1.0.1",
+    "turf-nearest": "^3.0.12",
+    "turf-point": "^2.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "turf-featurecollection",
+  "version": "1.0.1",
+  "description": "turf featureCollection module",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Turfjs/turf-featureCollection.git"
+  },
+  "keywords": [
+    "gis",
+    "geojson",
+    "turf",
+    "featurecollection"
+  ],
+  "author": "morganherlocker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Turfjs/turf-featureCollection/issues"
+  },
+  "homepage": "https://github.com/Turfjs/turf-featureCollection",
+  "devDependencies": {
+    "benchmark": "^1.0.0",
+    "tape": "^3.5.0",
+    "turf-point": "^2.0.0",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.3"
+  }
+}

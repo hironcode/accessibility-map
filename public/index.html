@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>accXspace</title>
+    
+    <link rel="stylesheet" href="/src/styles/style.css">
+    <link rel="icon" type="src/assets/image/png" href="/src/assets/img/icon.png">
+
+    <!-- Leaflet files -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Routing Machine files -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+</head>
+<body style="border:0; margin: 0;">
+    <div id="map"></div>
+    <div class="radio-box">
+        <input type="radio" name="transpo" value="wheelchair" id="radio-wheel" checked>
+        <label for="radio-wheel"><img src="/src/assets/img/icons8-wheelchair-100.png"></label>
+        <input type="radio" name="transpo" value="walking" id="radio-walking" >
+        <label for="radio-walking"><img src="/src/assets/img/icons8-walking-100.png"></label>
+        <input type="radio" name="transpo" value="car" id="radio-car" >
+        <label for="radio-car"><img src="/src/assets/img/icons8-car-100.png"></label>
+    </div>
+    <!-- <div class="formBlock">
+        <form id="form" action="">
+            <input type="text" name="start" class="input" id="start" placeholder="Origin">
+            <input type="text" name="end" class="input" id="destination" placeholder="Destination">
+            <button type="submit" class="button submit-button">Get Route</button>
+        </form>
+    </div> -->
+    
+    <div class="infoBlock">
+        <img src="/src/assets/img/remove.png" class="remove-icon">
+        <button type="button" class="reset-button" id="reset">Reset</button>
+    </div>
+    
+    <script src="/dist/index.bundle.js"></script>
+</body>
+</html>
