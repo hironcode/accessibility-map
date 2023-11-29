@@ -2,6 +2,7 @@
 import geoBuilding from "./geodata/campus_building.geojson"
 import geoRoadPath from './geodata/road_network.geojson';
 import geoSlopePath from './geodata/path_slope_network.geojson';
+import { lineString } from "@turf/turf";
 
 
 class Drawer{
@@ -31,11 +32,14 @@ class Drawer{
     }
 
     removeRoutes(){
-        this.map.eachLayer((layer)=>{
-            if (layer instanceof this.L.Polyline) {
-                this.map.removeLayer(layer);
-            }
-        });
+        console.log(this.pathList);
+        if (this.pathList){
+            for (let path of this.pathList){
+                let lineString = path[1];
+                console.log(lineString);
+                this.map.removeLayer(lineString);
+            };
+        };
         this.pathList = new Array();
     };
 
@@ -68,7 +72,7 @@ class Drawer{
             fillopacity: 0.3
         });
         this.map.addLayer(line);
-        this.pathList.push((path, pointList));
+        this.pathList.push([pointList, line]);
     }
 }
 

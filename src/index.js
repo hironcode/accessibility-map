@@ -99,34 +99,20 @@ map.on('dblclick', (e) => {
 });
 
 
-document.addEventListener('DOMContentLoaded', ()=>{
-    // ボタンの要素を取得
-    let reset = document.getElementById('reset');
-
-    // ボタンにクリックイベントリスナーを設定
-    reset.addEventListener('click', ()=>{
-        // ここにクリックされた時の処理を記述
-        drawer.removeRoutes();
-        if (drawer.markers){
-            drawer.removeMarkers();
-        };
-        drawer.addGeoJSON(transportation);
-    });
-});
-
-// function getTranspo(){
+// document.addEventListener('DOMContentLoaded', ()=>{
 //     // ボタンの要素を取得
-//     let radios = document.getElementsByName("tranpo");
-//     // ボタンにクリックイベントリスナーを設定
-//     for (let i = 0; i < radios.length; i++) {
-//         if (radios[i].checked) {
-//             transportation = radios[i].value
-//             break;
-//         }
-//     }
-//     drawer.removeRoutes();
-//     drawer.addGeoJSON(transportation);
-// };
+// });
+
+const reset = document.getElementById('reset');
+// ボタンにクリックイベントリスナーを設定
+reset.addEventListener('click', ()=>{
+    // ここにクリックされた時の処理を記述
+    drawer.removeRoutes();
+    if (drawer.markers){
+        drawer.removeMarkers();
+    };
+    drawer.addGeoJSON(transportation);
+});
 
 const radios = document.getElementsByName('transpo');
 for (let i = 0; i < radios.length; i++) {
