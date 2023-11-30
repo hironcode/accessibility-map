@@ -2,7 +2,7 @@
 import geoBuilding from "./geodata/campus_building.geojson"
 import geoRoadPath from './geodata/road_network.geojson';
 import geoSlopePath from './geodata/path_slope_network.geojson';
-import { lineString } from "@turf/turf";
+import geoWalkingPath from './geodata/path_walking_network.geojson';
 
 
 class Drawer{
@@ -14,6 +14,8 @@ class Drawer{
         this.markers = new Array();
         this.pathList = new Array();
         this.clicks = new Array();
+        this.geoJSONs = {};
+        
     }
 
     removeThirdMarker(){
@@ -32,15 +34,18 @@ class Drawer{
     }
 
     removeRoutes(){
-        console.log(this.pathList);
         if (this.pathList){
             for (let path of this.pathList){
                 let lineString = path[1];
-                console.log(lineString);
                 this.map.removeLayer(lineString);
             };
         };
         this.pathList = new Array();
+    };
+    
+    removeGeoJSON(transpo){
+        this.map.removeLayer(this.geoJSONs['building']);
+        this.map.removeLayer(this.geoJSONs[transpo]);
     };
 
     // addition functions
@@ -52,13 +57,18 @@ class Drawer{
     };
 
     addGeoJSON(transpo){
-        this.L.geoJSON(geoBuilding).addTo(this.map);
+        let geoB = this.L.geoJSON(geoBuilding).addTo(this.map);
+        this.geoJSONs["building"] = geoB;
+
+        let geoNetwork;
         if (transpo == 'wheelchair'){
-            this.L.geoJSON(geoSlopePath).addTo(this.map);
+            geoNetwork = this.L.geoJSON(geoSlopePath).addTo(this.map);
         }else if(transpo == 'car'){
-            this.L.geoJSON(geoRoadPath).addTo(this.map);
-        }
-        // else if(transpo='walking'){}
+            geoNetwork = this.L.geoJSON(geoRoadPath).addTo(this.map);
+        }else if(transpo='walking'){
+            geoNetwork = this.L.geoJSON(geoWalkingPath).addTo(this.map);
+        };
+        this.geoJSONs[transpo] = geoNetwork;
     };
 
     addNewRoute(path){

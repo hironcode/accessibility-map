@@ -2,6 +2,7 @@
 import geoBuilding from "./geodata/campus_building.geojson"
 import geoRoadPath from "./geodata/road_network.geojson";
 import geoSlopePath from './geodata/path_slope_network.geojson';
+import geoWalkingPath from './geodata/path_walking_network.geojson';
 
 import testNetwork from "./geodata/test.geojson"
 
@@ -31,6 +32,7 @@ let pfh = new PathFinderHelper();
 let drawer = new Drawer(L, map);
 geoRoadPath = pfh.interpolate(geoRoadPath);
 geoSlopePath = pfh.interpolate(geoSlopePath);
+geoWalkingPath = pfh.interpolate(geoWalkingPath);
 
 // transportation = [wheelchair, walking, car]
 // initialize transportaiton to be wheelchair
@@ -64,7 +66,9 @@ function getPath(startE, endE) {
         approproateNetwork = geoRoadPath;
     }else if(transportation == 'wheelchair'){
         approproateNetwork = geoSlopePath;
-    };
+    }else if(transportation == 'walking'){
+        approproateNetwork = geoWalkingPath;
+    }
 
     let startPoint = pfh.getNearestPoint(point(startCoor), approproateNetwork);
     let endPoint = pfh.getNearestPoint(point(endCoor), approproateNetwork);
@@ -108,7 +112,8 @@ const reset = document.getElementById('reset');
 reset.addEventListener('click', ()=>{
     // ここにクリックされた時の処理を記述
     drawer.removeRoutes();
-    if (drawer.markers){
+    drawer.removeGeoJSON(transportation);
+    if (drawer.markers.length > 0){
         drawer.removeMarkers();
     };
     drawer.addGeoJSON(transportation);
@@ -117,12 +122,16 @@ reset.addEventListener('click', ()=>{
 const radios = document.getElementsByName('transpo');
 for (let i = 0; i < radios.length; i++) {
     radios[i].addEventListener('change', function() {
+        drawer.removeRoutes();
+        // Use the transportation before the change to remove addGeoJSON
+        drawer.removeGeoJSON(transportation);
+
+        // Update the transportation and 
         if (this.checked) {
             transportation = this.value;
             console.log(`Transportation selected: ${transportation}`);
-            
         };
-        drawer.removeRoutes();
+
         drawer.addGeoJSON(transportation);
         if (drawer.clicks.length>=2){
             let oridest = drawer.getOriDest();
