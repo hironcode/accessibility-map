@@ -33,6 +33,7 @@ let drawer = new Drawer(L, map);
 geoRoadPath = pfh.interpolate(geoRoadPath);
 geoSlopePath = pfh.interpolate(geoSlopePath);
 geoWalkingPath = pfh.interpolate(geoWalkingPath);
+centerPoints = pfh.getBuildingCenter(geoBuilding)
 
 // transportation = [wheelchair, walking, car]
 // initialize transportaiton to be wheelchair

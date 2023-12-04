@@ -11,6 +11,8 @@ import bbox from '@turf/bbox';
 import * as d3 from "d3";
 import lineInterpolatePoints from 'line-interpolate-points';
 import Heap from "heap-js";
+import turfCenter from '@turf/center';
+import center from "@turf/center";
 
 class PathFinderHelper {
     getNearestPoint (point, network) {
@@ -90,7 +92,15 @@ class PathFinderHelper {
             network.features[i].geometry.coordinates = lineInterpolatePoints(linestrings, point_num);
         }
         return network;
-    }
+    };
+
+    getBuildingCenter(geojson){
+        let centers = new Array();
+        for (let bul in geojson){
+            centers.push(turfCenter(bul))
+        };
+        return centers
+    };
 };
 
 export default PathFinderHelper;
